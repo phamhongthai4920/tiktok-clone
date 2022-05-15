@@ -1,8 +1,8 @@
-import HeaderOnlyLayout from '~/components/Layout/HeaderOnlyLayout';
-import Following from '~/pages/Following';
-import Home from '~/pages/Home';
-import Profile from '~/pages/Profile';
-import Upload from '~/pages/Upload';
+import HeaderOnlyLayout from '~/components/Layout/HeaderOnlyLayout/HeaderOnlyLayout';
+import Following from '~/pages/Following/Following';
+import Home from '~/pages/Home/Home';
+import Profile from '~/pages/Profile/Profile';
+import Upload from '~/pages/Upload/Upload';
 const publicRoutes = [
   {
     path: '/',
