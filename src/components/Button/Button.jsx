@@ -19,6 +19,7 @@ function Button({
   leftIcon,
   rightIcon,
   className,
+  fontWeight = 700,
   ...passProps
 }) {
   let Comp = 'button';
@@ -30,6 +31,9 @@ function Button({
     text,
     disabled,
     rounded,
+    fontWeightLarge: fontWeight === 700,
+    fontWeightMedium: fontWeight === 600,
+    fontWeightSmall: fontWeight === 500,
     [className]: className,
   });
 
@@ -40,7 +44,6 @@ function Button({
 
   Object.keys(props).forEach((keyProps) => {
     if (keyProps.startsWith('on') && typeof props[keyProps] === 'function') {
-      console.log(props[keyProps]);
       delete props.keyProps;
     }
   });

@@ -86,3 +86,25 @@
 .title+.icon {
     margin-left: 8px;
 }
+
+.icon {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+}
+
+// font weight
+.fontWeightLarge {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fontWeightMedium {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fontWeightSmall {
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+}
