@@ -20,6 +20,7 @@ function Button({
   rightIcon,
   className,
   fontWeight = 700,
+  theme = 'primary',
   ...passProps
 }) {
   let Comp = 'button';

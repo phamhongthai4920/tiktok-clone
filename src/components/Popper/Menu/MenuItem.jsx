@@ -8,7 +8,7 @@ function MenuItem({ data, onClick }) {
       className={cx('menu-item', { separate: data.separate })}
       leftIcon={data.icon}
       to={data.to}
-      fontWeight={500}
+      fontWeight={600}
       onClick={onClick}
     >
       {data.title}

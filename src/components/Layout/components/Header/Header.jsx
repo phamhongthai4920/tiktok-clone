@@ -1,21 +1,16 @@
-import {
-  faCircleXmark,
-  faCloudArrowUp,
-  faEllipsisVertical,
-  faMagnifyingGlass,
-  faSpinner,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
-import TippyHeadless from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images/images';
-import AccountItem from '~/components/AccountItem/AccountItem';
 import Button from '~/components/Button/Button';
+import { AddIcon, MailBoxIcon, MessageIcon } from '~/components/Icons/Icons';
+import Image from '~/components/Image/Image';
 import Menu from '~/components/Popper/Menu/Menu';
-import { default as PopperWrapper } from '~/components/Popper/Popper';
+import Search from '~/components/Search/Search';
 import styles from './Header.module.scss';
 import { menuItems } from './MenuOptionData';
 import { userItems } from './UserOptionData';
@@ -23,14 +18,6 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const currentUser = true;
-
-  const [searchResult, setSearchResult] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 3000);
-  }, []);
-
   const handleChangeMenu = (menuItem) => {};
   return (
     <header className={cx('wrapper')}>
@@ -38,45 +25,26 @@ function Header() {
         <div className={cx('logo')}>
           <img src={images.logo} alt="TikTok" />
         </div>
-        <TippyHeadless
-          visible={!!searchResult.length}
-          interactive
-          render={(attrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Accounts</h4>
-                {/* account item */}
-
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input type="text" placeholder="Tim kiếm tài khoản và video" name="" id="" spellCheck={false} />
-            {/* clear */}
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            {/* loading */}
-            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-            {/* search */}
-            <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </div>
-        </TippyHeadless>
+        {/* search */}
+        <Search />
         <div className={cx('actions')}>
           {currentUser ? (
-            <Tippy delay={[0, 200]} content="upload video">
-              <button className={cx('action-btn')}>
-                <FontAwesomeIcon icon={faCloudArrowUp} />
-              </button>
-            </Tippy>
+            <>
+              <Button to="/upload" outline className={cx('btn-upload')} sizeS leftIcon={<AddIcon />}>
+                Tải lên
+              </Button>
+              <Tippy delay={[0, 200]} content="Tin nhắn">
+                <Link to="/message" className={cx('action-btn')}>
+                  <MessageIcon />
+                </Link>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Hộp thư  ">
+                <Link to="/mail" className={cx('action-btn')}>
+                  <MailBoxIcon />
+                  <span className={cx('badge')}>12</span>
+                </Link>
+              </Tippy>
+            </>
           ) : (
             <>
               <Button text>Upload</Button>
@@ -86,10 +54,11 @@ function Header() {
 
           <Menu onChange={handleChangeMenu} items={currentUser ? userItems : menuItems}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 src="https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-Viet-Nam.jpg"
                 alt=""
+                fallback="https://360boutique.vn/wp-content/uploads/2022/05/QGVTK301-4-400x600.jpg"
               />
             ) : (
               <button className={cx('more-button')}>

@@ -1,22 +1,19 @@
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import Image from '../Image/Image';
 import styles from './AccountItem.module.scss';
 const cx = classNames.bind(styles);
-function AccountItem() {
+function AccountItem({ data }) {
   return (
     <div className={cx('wrapper')}>
-      <img
-        className={cx('avatar')}
-        src="https://onecms-res.cloudinary.com/image/upload/s--aTpaUpuo--/f_auto%2Cq_auto/c_fill%2Cg_auto%2Ch_622%2Cw_830/v1/tdy-migration/cat_3_0.jpg?itok=n7GwSz59"
-        alt=""
-      />
+      <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
       <div className={cx('info')}>
         <p className={cx('name')}>
-          <span>Rentie</span>
-          <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />
+          <span>{data.full_name}</span>
+          {!!data.tick && <FontAwesomeIcon className={cx('check')} icon={faCircleCheck} />}
         </p>
-        <span className={cx('username')}>Nguyen van Rentie</span>
+        <span className={cx('username')}>{data.nickname}</span>
       </div>
     </div>
   );
